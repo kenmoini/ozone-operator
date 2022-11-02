@@ -1,0 +1,6 @@
+apiVersion: config.operator.o3/v1alpha1
+kind: RemoteSubscription
+metadata:
+  name: remotesubscription-sample
+spec:
+  # TODO(user): Add fields here

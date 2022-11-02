@@ -1,0 +1,48 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - config.operator.o3
+  resources:
+  - remotesubscriptions
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - config.operator.o3
+  resources:
+  - remotesubscriptions/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - config.operator.o3
+  resources:
+  - remotesubscriptions/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+- apiGroups:
+  - packages.operators.coreos.com
+  resources:
+  - PackageManifest
+  verbs:
+  - get
+  - list
+  - watch

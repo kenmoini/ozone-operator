@@ -1,0 +1,24 @@
+# permissions for end users to edit remotesubscriptions.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: remotesubscription-editor-role
+rules:
+- apiGroups:
+  - config.operator.o3
+  resources:
+  - remotesubscriptions
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - config.operator.o3
+  resources:
+  - remotesubscriptions/status
+  verbs:
+  - get
