@@ -33,6 +33,7 @@ import (
 
 	configv1alpha1 "github.com/kenmoini/ozone-operator/api/v1alpha1"
 	"github.com/kenmoini/ozone-operator/controllers"
+	pkgSrvr "github.com/operator-framework/operator-lifecycle-manager/pkg/package-server/apis/operators/v1"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -45,6 +46,8 @@ func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
 	utilruntime.Must(configv1alpha1.AddToScheme(scheme))
+
+	utilruntime.Must(pkgSrvr.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 }
 

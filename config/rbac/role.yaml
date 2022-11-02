@@ -39,10 +39,17 @@ rules:
   - create
   - patch
 - apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
   - packages.operators.coreos.com
   resources:
   - PackageManifest
   verbs:
   - get
   - list
-  - watch

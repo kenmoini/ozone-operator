@@ -47,9 +47,9 @@ spec:
                     type: string
                   installMode:
                     description: InstallMode is the install mode for the operator,
-                      options include `all-namespaces`, `namespace` - if this is not
-                      specified, the Operator's default Installation Mode will be
-                      used.
+                      options include `all-namespaces`, `namespaced` - if this is
+                      not specified, the Operator's default Installation Mode will
+                      be used.
                     type: string
                   installPlanApproval:
                     description: InstallPlanApproval is the approval strategy for
@@ -57,6 +57,10 @@ spec:
                     type: string
                   packageName:
                     description: PackageName is the name of the operator PackageManifest
+                    type: string
+                  packageNamespace:
+                    description: PackageNamespace is the namespace of the operator
+                      PackageManifest
                     type: string
                   source:
                     description: Source is the name of the CatalogSource that contains
@@ -71,8 +75,13 @@ spec:
                       with - if this is not specified, the latest CSV in the channel
                       will be used
                     type: string
+                  targetNamespace:
+                    description: TargetNamespace is the namespace in the remote cluster
+                      where the operator will be deployed
+                    type: string
                 required:
                 - packageName
+                - packageNamespace
                 - source
                 - sourceNamespace
                 type: object
@@ -84,13 +93,12 @@ spec:
                     description: Name is the name of the remote cluster as found in
                       RHACM
                     type: string
-                  targetNamespace:
-                    description: TargetNamespace is the namespace in the remote cluster
-                      where the operator will be deployed
-                    type: string
+                  refreshInterval:
+                    description: RefreshInterval is the interval at which the remote
+                      cluster will be refreshed and synced
+                    type: integer
                 required:
                 - name
-                - targetNamespace
                 type: object
             required:
             - operator

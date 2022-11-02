@@ -1,0 +1,15 @@
+apiVersion: config.operator.o3/v1alpha1
+kind: RemoteSubscription
+metadata:
+  name: remotesubscription-sample
+spec:
+  remoteCluster:
+    name: sno-ocp
+  operator:
+    packageName: cert-utils-operator
+    packageNamespace: openshift-marketplace
+    channel: alpha
+    installPlanApproval: Automatic
+    source: community-operators
+    sourceNamespace: openshift-marketplace
+

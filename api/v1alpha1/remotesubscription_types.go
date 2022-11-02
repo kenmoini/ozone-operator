@@ -20,7 +20,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
 // RemoteSubscriptionSpec defines the desired state of RemoteSubscription
@@ -39,14 +38,16 @@ type RemoteSubscriptionSpec struct {
 type RemoteCluster struct {
 	// Name is the name of the remote cluster as found in RHACM
 	Name string `json:"name"`
-	// TargetNamespace is the namespace in the remote cluster where the operator will be deployed
-	TargetNamespace string `json:"targetNamespace"`
+	// RefreshInterval is the interval at which the remote cluster will be refreshed and synced
+	RefreshInterval int `json:"refreshInterval,omitempty"`
 }
 
 // Operator defines the local operator to be deployed to the remote cluster
 type Operator struct {
 	// PackageName is the name of the operator PackageManifest
 	PackageName string `json:"packageName"`
+	// PackageNamespace is the namespace of the operator PackageManifest
+	PackageNamespace string `json:"packageNamespace"`
 	// Channel is the name of the operator channel - if this is not specified, the Operator default channel will be used
 	Channel string `json:"channel,omitempty"`
 	// StartingCSV is the name of the operator CSV to start with - if this is not specified, the latest CSV in the channel will be used
@@ -57,8 +58,10 @@ type Operator struct {
 	Source string `json:"source"`
 	// SourceNamespace is the namespace of the CatalogSource that contains the operator
 	SourceNamespace string `json:"sourceNamespace"`
-	// InstallMode is the install mode for the operator, options include `all-namespaces`, `namespace` - if this is not specified, the Operator's default Installation Mode will be used.
+	// InstallMode is the install mode for the operator, options include `all-namespaces`, `single-namespace`, `multi-namespace`, or `own-namespace` - if this is not specified, the Operator's default Installation Mode will be used.
 	InstallMode string `json:"installMode,omitempty"`
+	// TargetNamespace is the namespace in the remote cluster where the operator will be deployed
+	TargetNamespace string `json:"targetNamespace,omitempty"`
 }
 
 // RemoteSubscriptionStatus defines the observed state of RemoteSubscription
